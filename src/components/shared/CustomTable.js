@@ -1,23 +1,46 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react';
+import { Image, Table } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { isArrNullOrEmpty } from '../../utils';
+import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../movie/defaults';
 import { Error } from './Error';
 
 export const CustomTable = ({ tableData }) => {
     const { headers, dataList } = tableData;
     if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
-        return <>empty...</> // <Error msg="Data empty!" />
+        return <>Type a movie to list... </> // <Error msg="Data empty!" />
     }
 
-    const rows = dataList.map((data) => {
-        <Table.Row key={shortid.generate()}>
-            {data[0]}
-        </Table.Row>
+
+    const keys = Object.keys(MovieTableHeaderVisibles);
+    const visibleKeys = keys.filter(key => MovieTableHeaderVisibles[key]);
+
+    const tableHeaders = visibleKeys.map(key => MovieTableHeaderVisibles[key] && <Table.HeaderCell key={shortid.generate()}> {MovieTableHeaderNames[key]} </Table.HeaderCell>);
+
+
+    let tableRows = [];
+    dataList.forEach(data => {
+
+        tableRows.push(<Table.Row key={shortid.generate()}>
+            {visibleKeys.map(key => {
+
+                let cellVal = "";
+                if (key === "genre_ids") {
+                    return;
+                } else if (key === "genres") {
+                    cellVal = data[key].join();
+                } else if (key === "poster_path") {
+                    cellVal = <Image src={data[key]} size="medium" rounded />
+                }
+                else {
+                    cellVal = data[key];
+                }
+
+                return <Table.Cell key={shortid.generate()}> {cellVal} </Table.Cell>;
+            })}
+        </Table.Row>);
+
     });
-
-
-    const tableHeaders = headers.map(header => <Table.HeaderCell key={shortid.generate()} name={header["name"]}> {header["displayAs"]} </Table.HeaderCell>);
 
 
     return (
@@ -29,7 +52,7 @@ export const CustomTable = ({ tableData }) => {
             </Table.Header>
 
             <Table.Body>
-                {rows}
+                {tableRows}
             </Table.Body>
         </Table>
     )
