@@ -78,6 +78,11 @@ const Movies = () => {
             <CustomTable tableData={getTableData(state.results, state.genres)} />
         </Grid>
     )
+    // return <Input
+    //     icon={<Icon name='search' link onClick={handleSearch} />}
+    //     placeholder='Search...'
+    //     onChange={handleChange}
+    // />
 }
 
 export default Movies;
