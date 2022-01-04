@@ -1,35 +1,47 @@
-import React, {useState} from 'react'
-import { Image, Table,Button,Icon } from 'semantic-ui-react';
+import React, { useState } from 'react'
+import { Image, Table, Button, Icon } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { isArrNullOrEmpty } from '../../utils';
 import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../movie/defaults';
 import { Error } from './Error';
+import { ListTypes } from './synthetic-enums';
 
 export const CustomTable = ({ tableData }) => {
-    const [state, setState] = useState({favIds:[], watchLaterIds:[]});
+    const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
 
     const { headers, dataList } = tableData;
+    // if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
+    //     return <>Type a movie to list... </> // <Error msg="Data empty!" />
+    // }
     if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
-        return <>Type a movie to list... </> // <Error msg="Data empty!" />
+        return <>  </> // <Error msg="Data empty!" />
     }
-
 
     const keys = Object.keys(MovieTableHeaderVisibles);
     const visibleKeys = keys.filter(key => MovieTableHeaderVisibles[key]);
 
     const tableHeaders = visibleKeys.map(key => MovieTableHeaderVisibles[key] && <Table.HeaderCell key={shortid.generate()}> {MovieTableHeaderNames[key]} </Table.HeaderCell>);
 
-    const getToogleArr=(arr,data)=>{
-        const predicate=(el)=>el===data["id"];
-            let index=arr.findIndex((el)=>el===data["id"]);
-            if(index===-1){
-                arr.push(data["id"]);
-            }else {
-                arr.pop(data["id"]);
-            }
+    const getManagedArr = (arr, data) => {
+        const predicate = (el) => el === data["id"];
+        let index = arr.findIndex(predicate);
+        if (index === -1) {
+            arr.push(data["id"]);
+        } else {
+            arr.pop(data["id"]);
+        }
         return arr;
-        } 
-    
+    }
+
+    const updateLocalStorage = (arr, type) => {
+
+        const moviesStorage = JSON.parse(window.localStorage.getItem('movies-api')) || {};
+
+        moviesStorage[type] = arr;
+
+        window.localStorage.setItem('movies-api', JSON.stringify(moviesStorage));
+
+    }
 
     let tableRows = [];
     dataList.forEach(data => {
@@ -39,7 +51,7 @@ export const CustomTable = ({ tableData }) => {
 
                 let cellVal = "";
 
-                switch (key) {                        
+                switch (key) {
                     case "genres":
                         cellVal = data[key].join();
                         break;
@@ -47,34 +59,37 @@ export const CustomTable = ({ tableData }) => {
                         cellVal = <Image src={data[key]} size="medium" rounded />
                         break;
                     case "title":
-                        cellVal = <>   
-                        <Button icon={ <Icon name='heart outline' /> } toggle active={state.favIds.includes(data["id"])} 
-                            content={data[key]}
-                            onClick={()=>{
-                            //state.favIds.push(data["id"]);
-                            setState({...state, ...{favIds:getToogleArr(state.favIds,data)}});
+                        cellVal = <>
+                            <Button icon={<Icon name='heart outline' />} toggle active={state.favIds.includes(data["id"])}
+                                content={data[key]}
+                                onClick={() => {
+                                    let managedArr = getManagedArr(state.favIds, data);
+                                    setState({ ...state, ...{ favIds: managedArr } });
+                                    updateLocalStorage(managedArr, ListTypes.favorite);
 
-                            }} /> 
-                        <Button icon={<Icon name='plus' />} toggle active={state.watchLaterIds.includes(data["id"])} 
-                            content={"Watch later"}
-                            onClick={()=>{
-                            setState({...state, ...{watchLaterIds:getToogleArr(state.watchLaterIds,data)}});
-                            }} /> 
-                                       
-                                   </>
+                                }} />
+                            <Button icon={<Icon name='plus' />} toggle active={state.watchLaterIds.includes(data["id"])}
+                                content={"Watch later"}
+                                onClick={() => {
+                                    let managedArr = getManagedArr(state.watchLaterIds, data);
+                                    setState({ ...state, ...{ watchLaterIds: managedArr } });
+                                    updateLocalStorage(managedArr, ListTypes.watchLater);
+                                }} />
+
+                        </>
                         break;
                     case "genre_ids":
-                    break;
+                        break;
                     default:
                         cellVal = data[key];
-                    break;
+                        break;
                 }
 
 
 
                 return <Table.Cell key={shortid.generate()}> {cellVal} </Table.Cell>;
             })}
-            
+
         </Table.Row>);
 
     });

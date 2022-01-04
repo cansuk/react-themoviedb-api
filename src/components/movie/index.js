@@ -4,8 +4,14 @@ import { movieServices } from '../../api/Movies';
 import { genreServices } from '../../api/Genres';
 import { CustomTable } from '../shared/CustomTable';
 import { getTableData } from './helper';
+import { useParams } from 'react-router-dom';
 
 const Movies = () => {
+    //  let params = useParams();
+    // console.log("params.searchTerm");
+    // console.log(params.searchTerm);
+
+
     const initialState = {
         loading: false,
         results: [],
