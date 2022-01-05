@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Table, Button, Icon } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { isArrNullOrEmpty } from '../../utils';
@@ -10,12 +10,23 @@ export const CustomTable = ({ tableData }) => {
     const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
 
     const { headers, dataList } = tableData;
+    useEffect(() => {
+        // TODO CANSU get favs and watchlaters
+        const moviesStorage = JSON.parse(window.localStorage.getItem('movies-api'));
+        state.favIds = moviesStorage[ListTypes.favorite];
+        state.watchLaterIds = moviesStorage[ListTypes.watchLater];
+        setState({ ...state, ...{ favIds: state.favIds }, ...{ watchLaterIds: state.watchLaterIds } });
+        return () => {
+        }
+    }, [])
     // if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
     //     return <>Type a movie to list... </> // <Error msg="Data empty!" />
     // }
     if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
         return <>  </> // <Error msg="Data empty!" />
     }
+
+
 
     const keys = Object.keys(MovieTableHeaderVisibles);
     const visibleKeys = keys.filter(key => MovieTableHeaderVisibles[key]);
@@ -60,7 +71,7 @@ export const CustomTable = ({ tableData }) => {
                         break;
                     case "title":
                         cellVal = <>
-                            <Button icon={<Icon name='heart outline' />} toggle active={state.favIds.includes(data["id"])}
+                            <Button icon={<Icon name='heart outline' />} toggle active={state.favIds?.includes(data["id"])}
                                 content={data[key]}
                                 onClick={() => {
                                     let managedArr = getManagedArr(state.favIds, data);
@@ -68,7 +79,7 @@ export const CustomTable = ({ tableData }) => {
                                     updateLocalStorage(managedArr, ListTypes.favorite);
 
                                 }} />
-                            <Button icon={<Icon name='plus' />} toggle active={state.watchLaterIds.includes(data["id"])}
+                            <Button icon={<Icon name='plus' />} toggle active={state.watchLaterIds?.includes(data["id"])}
                                 content={"Watch later"}
                                 onClick={() => {
                                     let managedArr = getManagedArr(state.watchLaterIds, data);

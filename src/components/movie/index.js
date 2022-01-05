@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import { Grid, Search, Segment, Label, Input, Button, Icon } from 'semantic-ui-react';
-import { movieServices } from '../../api/Movies';
-import { genreServices } from '../../api/Genres';
+import { searchServices, genreServices } from '../../api';
 import { CustomTable } from '../shared/CustomTable';
 import { getTableData } from './helper';
 import { useParams } from 'react-router-dom';
@@ -55,7 +54,7 @@ const Movies = () => {
 
         const criteria = { query: state.value };
 
-        movieServices.getMovies(criteria).then(movies => {
+        searchServices.getMovies(criteria).then(movies => {
             dispatch({
                 type: 'FINISH_SEARCH',
                 results: movies
