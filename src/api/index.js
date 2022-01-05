@@ -39,6 +39,7 @@ const getGenres = async () => new Promise(async (resolve, reject) => {
     try {
         const response = await axios.get(`${apiUrl}/genre/movie/list?api_key=${apiKey}`);
         if (response.status === 200) {
+            window.genres = response.data.genres;
             resolve(response.data.genres);
         } else {
             reject(response.statusText);
@@ -65,7 +66,6 @@ const getMovieById = async (params) => new Promise(async (resolve, reject) => {
     try {
         const response = await axios.get(`${apiUrl}/movie/${movieId}?api_key=${apiKey}`);
         if (response.status === 200) {
-            debugger;
             resolve(response.data);
         } else {
             reject(response.statusText);

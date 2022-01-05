@@ -54,7 +54,7 @@ const Movies = () => {
 
         const criteria = { query: state.value };
 
-        searchServices.getMovies(criteria).then(movies => {
+        searchServices.getMoviesByCriteria(criteria).then(movies => {
             dispatch({
                 type: 'FINISH_SEARCH',
                 results: movies
