@@ -13,8 +13,10 @@ export const CustomTable = ({ tableData }) => {
     useEffect(() => {
         // TODO CANSU get favs and watchlaters
         const moviesStorage = JSON.parse(window.localStorage.getItem('movies-api'));
-        state.favIds = moviesStorage[ListTypes.favorite];
-        state.watchLaterIds = moviesStorage[ListTypes.watchLater];
+        if (moviesStorage) {
+            state.favIds = moviesStorage[ListTypes.favorite];
+            state.watchLaterIds = moviesStorage[ListTypes.watchLater];
+        }
         setState({ ...state, ...{ favIds: state.favIds }, ...{ watchLaterIds: state.watchLaterIds } });
         return () => {
         }
@@ -34,9 +36,11 @@ export const CustomTable = ({ tableData }) => {
     const tableHeaders = visibleKeys.map(key => MovieTableHeaderVisibles[key] && <Table.HeaderCell key={shortid.generate()}> {MovieTableHeaderNames[key]} </Table.HeaderCell>);
 
     const getManagedArr = (arr, data) => {
+        if (!arr) return -1;
         const predicate = (el) => el === data["id"];
         let index = arr.findIndex(predicate);
         if (index === -1) {
+            debugger;
             arr.push(data["id"]);
         } else {
             arr.pop(data["id"]);

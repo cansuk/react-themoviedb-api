@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, Label } from 'react';
-import { Card, Image, Icon, Segment, Grid } from 'semantic-ui-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Card, Image, Icon, Segment, Grid, Label } from 'semantic-ui-react';
 import { constants } from '../../constants';
 
 
@@ -20,7 +20,17 @@ export const CardView = ({ movies }) => {
                     <span className='date'>Joined in 2015</span>
                 </Card.Meta>
                 <Card.Description>
-                    Matthew is a musician living in Nashville.
+                    <div>
+                        <Label as='a' tag>
+                            New
+                        </Label>
+                        <Label as='a' color='red' tag>
+                            Upcoming
+                        </Label>
+                        <Label as='a' color='teal' tag>
+                            Featured
+                        </Label>
+                    </div>
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
