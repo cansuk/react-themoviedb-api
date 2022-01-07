@@ -4,15 +4,16 @@ import shortid from 'shortid';
 import { constants } from '../../constants';
 import ImageView from '../image-view';
 import RatingView from '../shared/RatingView';
+import DarkImgFilter from '../shared/styled-components/dark-img-filter';
 import TagView from '../tag-view';
+import '../../styles/index.css';
 
 const CardView = ({ movies }) => {
     const predicate = (data) => {
-
         return <Card key={shortid.generate()} style={{ backroundColor: "red" }}>
-            <Suspense fallback={<Icon name="protect" />}>
-                <ImageView src={constants.imgRoot.concat(data["poster_path"])} />
-            </Suspense>
+
+            <Image border={true} src={constants.imgRoot.concat(data["poster_path"])} wrapped ui={true} />
+
             <Card.Content>
                 <Card.Header>
                 </Card.Header>
@@ -30,7 +31,6 @@ const CardView = ({ movies }) => {
                 </a>
             </Card.Content>
         </Card>
-
     }
 
     return <Card.Group>

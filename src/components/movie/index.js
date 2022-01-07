@@ -71,6 +71,7 @@ const Movies = () => {
         dispatch({ type: 'START_SEARCH', query: data.value });
     }, []);
 
+
     return (
         <Grid columns={2} padded='vertically'>
             <Grid.Column>

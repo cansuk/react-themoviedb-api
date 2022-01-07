@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const DarkImgFilter = styled.div`
+const DarkImgFilter = styled.span`
 filter: brightness(50%);
 &:hover {
     filter: brightness(100%);

@@ -1,0 +1,8 @@
+img-dark-filter{
+    filter: brightness(50%);
+}
+
+img-dark-filter:hover {
+    filter: brightness(100%);
+    transition: 0.9s ease-out 100ms;
+  }
