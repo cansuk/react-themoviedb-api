@@ -35,15 +35,15 @@ export const CustomTable = ({ tableData }) => {
 
     const tableHeaders = visibleKeys.map(key => MovieTableHeaderVisibles[key] && <Table.HeaderCell key={shortid.generate()}> {MovieTableHeaderNames[key]} </Table.HeaderCell>);
 
-    const getManagedArr = (arr, data) => {
+    const getManagedArr = (arr, id) => {
         if (!arr) return -1;
-        const predicate = (el) => el === data["id"];
+        const predicate = (el) => el === id;
         let index = arr.findIndex(predicate);
         if (index === -1) {
             debugger;
-            arr.push(data["id"]);
+            arr.push(id);
         } else {
-            arr.pop(data["id"]);
+            arr.pop(id);
         }
         return arr;
     }
@@ -78,7 +78,7 @@ export const CustomTable = ({ tableData }) => {
                             <Button icon={<Icon name='heart outline' />} toggle active={state.favIds?.includes(data["id"])}
                                 content={data[key]}
                                 onClick={() => {
-                                    let managedArr = getManagedArr(state.favIds, data);
+                                    let managedArr = getManagedArr(state.favIds, data["id"]);
                                     setState({ ...state, ...{ favIds: managedArr } });
                                     updateLocalStorage(managedArr, ListTypes.favorite);
 
@@ -86,7 +86,7 @@ export const CustomTable = ({ tableData }) => {
                             <Button icon={<Icon name='plus' />} toggle active={state.watchLaterIds?.includes(data["id"])}
                                 content={"Watch later"}
                                 onClick={() => {
-                                    let managedArr = getManagedArr(state.watchLaterIds, data);
+                                    let managedArr = getManagedArr(state.watchLaterIds, data["id"]);
                                     setState({ ...state, ...{ watchLaterIds: managedArr } });
                                     updateLocalStorage(managedArr, ListTypes.watchLater);
                                 }} />
