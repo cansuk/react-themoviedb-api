@@ -4,18 +4,15 @@ import { searchServices, genreServices } from '../../api';
 import { CustomTable } from '../shared/CustomTable';
 import { getTableData } from './helper';
 import { useParams } from 'react-router-dom';
+import MovieTable from './movie-table';
 
 const Movies = () => {
-    //  let params = useParams();
-    // console.log("params.searchTerm");
-    // console.log(params.searchTerm);
-
-
     const initialState = {
         loading: false,
         results: [],
         value: '',
-        genres: []
+        genres: [],
+        totalPages: 1
     }
     const movieReducer = (state, action) => {
         switch (action.type) {
@@ -24,7 +21,7 @@ const Movies = () => {
             case 'START_SEARCH':
                 return { ...state, loading: true, value: action.query };
             case 'FINISH_SEARCH':
-                return { ...state, loading: false, results: action.results };
+                return { ...state, loading: false, results: action.results, totalPages: action.totalPages };
             case 'UPDATE_SELECTION':
                 return { ...state, value: action.selection };
             case 'SET_GENRES':
@@ -52,12 +49,13 @@ const Movies = () => {
             });
         });
 
-        const criteria = { query: state.value };
+        const criteria = { query: state.value, page: 1 };
 
-        searchServices.getMoviesByCriteria(criteria).then(movies => {
+        searchServices.getMoviesByCriteria(criteria).then(({ movies, totalPages }) => {
             dispatch({
                 type: 'FINISH_SEARCH',
-                results: movies
+                results: movies,
+                totalPages: totalPages
             });
         }).catch(err => {
             // TODO handle error
@@ -72,6 +70,22 @@ const Movies = () => {
     }, []);
 
 
+    const handlePaginationChange = (e, { activePage }) => {
+
+        const criteria = { query: state.value, page: activePage };
+        searchServices.getMoviesByCriteria(criteria).then(({ movies, totalPages }) => {
+
+            dispatch({
+                type: 'FINISH_SEARCH',
+                results: movies,
+                totalPages: totalPages
+            });
+        }).catch(err => {
+            // TODO handle error
+            debugger;
+        });
+    }
+
     return (
         <Grid columns={2} padded='vertically'>
             <Grid.Column>
@@ -81,14 +95,13 @@ const Movies = () => {
                     onChange={handleChange}
                 />
             </Grid.Column>
-            <CustomTable tableData={getTableData(state.results, state.genres)} />
+            <CustomTable tableData={getTableData(state.results, state.genres)}
+                handlePaginationChange={handlePaginationChange}
+                totalPages={state.totalPages}
+            />
+            {/* <MovieTable results={state.results} genres={state.genres} /> */}
         </Grid>
     )
-    // return <Input
-    //     icon={<Icon name='search' link onClick={handleSearch} />}
-    //     placeholder='Search...'
-    //     onChange={handleChange}
-    // />
 }
 
 export default Movies;

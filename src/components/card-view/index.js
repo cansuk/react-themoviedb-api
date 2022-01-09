@@ -1,14 +1,13 @@
 import React, { lazy, Suspense, useMemo } from 'react';
-import { Card, Image, Icon, Segment, Grid, Label } from 'semantic-ui-react';
+import { Card, Image, Icon, Segment, Grid, Label, Button } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { constants } from '../../constants';
-import ImageView from '../image-view';
 import RatingView from '../shared/RatingView';
-import DarkImgFilter from '../shared/styled-components/dark-img-filter';
 import TagView from '../tag-view';
 import '../../styles/index.css';
 
-const CardView = ({ movies }) => {
+const CardView = (props) => {
+    const { movies, handleRemoveFromList } = props;
     const predicate = (data) => {
         return <Card key={shortid.generate()} style={{ backroundColor: "red" }}>
 
@@ -25,10 +24,22 @@ const CardView = ({ movies }) => {
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <a>
-                    <RatingView value={data["vote_average"]} maxValue={10} />
-                    {`${data["vote_average"]}/${data["vote_count"]} votes`}
-                </a>
+                <Grid columns={2}>
+                    <Grid.Column key={shortid.generate()}>
+                        <a>
+                            <RatingView value={data["vote_average"]} maxValue={10} />
+                            {`${data["vote_average"]}/${data["vote_count"]} votes`}
+                        </a>
+                    </Grid.Column>
+                    <Grid.Column key={shortid.generate()}>
+                        <Button animated='vertical' onClick={() => handleRemoveFromList(data["id"])}>
+                            <Button.Content hidden>Remove</Button.Content>
+                            <Button.Content visible>
+                                <Icon name='trash' />
+                            </Button.Content>
+                        </Button>
+                    </Grid.Column>
+                </Grid>
             </Card.Content>
         </Card>
     }

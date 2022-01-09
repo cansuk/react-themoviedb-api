@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Image, Table, Button, Icon } from 'semantic-ui-react';
 import shortid from 'shortid';
-import { isArrNullOrEmpty } from '../../utils';
+import { genreServices, searchServices } from '../../../api';
+import { isArrNullOrEmpty } from '../../../utils';
+import TablePagination from '../../shared/pagination';
+import { ListTypes } from '../../shared/synthetic-enums';
+import { getManagedArr, updateLocalStorage } from '../../shared/utils';
+import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../defaults';
+import { getTableData } from '../helper';
 
-import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../movie/defaults';
-import { Error } from './Error';
-import TablePagination from './pagination';
-import { ListTypes } from './synthetic-enums';
-import { getManagedArr, updateLocalStorage } from './utils';
-// import MultiLineTextEllipsis from "./styled-components/text-ellipsis";
-import DarkImgFilter from './styled-components/dark-img-filter';
-import styled from 'styled-components';
-
-
-
-
-export const CustomTable = ({ tableData, handlePaginationChange, totalPages }) => {
-    const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
-
+const MovieTable = (props) => {
+    const { results, genres } = props;
+    const [state, setState] = useState({ favIds: [], watchLaterIds: [], paginationResults: results });
+    let tableData = getTableData(state.paginationResults, genres);
     const { headers, dataList } = tableData;
     useEffect(() => {
-        // TODO CANSU get favs and watchlaters
         const moviesStorage = JSON.parse(window.localStorage.getItem('movies-api'));
         if (moviesStorage) {
             state.favIds = moviesStorage[ListTypes.favorite];
@@ -54,11 +48,7 @@ export const CustomTable = ({ tableData, handlePaginationChange, totalPages }) =
                         cellVal = data[key].join();
                         break;
                     case "poster_path":
-                        if (data[key]) {
-                            cellVal = <DarkImgFilter> <Image src={data[key]} size="small" rounded /> </DarkImgFilter>
-                        } else {
-                            cellVal = <DarkImgFilter> <Image src="https://react.semantic-ui.com/images/wireframe/image.png" size="small" rounded /></DarkImgFilter>
-                        }
+                        cellVal = <Image src={data[key]} size="medium" rounded />
                         break;
                     case "title":
                         cellVal = <>
@@ -82,9 +72,6 @@ export const CustomTable = ({ tableData, handlePaginationChange, totalPages }) =
                         break;
                     case "genre_ids":
                         break;
-                    case "overview":
-                        cellVal = data[key];
-                        break;
                     default:
                         cellVal = data[key];
                         break;
@@ -98,7 +85,17 @@ export const CustomTable = ({ tableData, handlePaginationChange, totalPages }) =
         </Table.Row>);
 
     });
+    const handlePaginationChange = (e, { activePage }) => {
 
+        const criteria = { query: state.value, page: activePage };
+
+        searchServices.getMoviesByCriteria(criteria).then(movies => {
+
+        }).catch(err => {
+            // TODO handle error
+            debugger;
+        });
+    }
     return (
         <>
             <Table basic>
@@ -112,8 +109,11 @@ export const CustomTable = ({ tableData, handlePaginationChange, totalPages }) =
                     {tableRows}
                 </Table.Body>
             </Table>
-            <TablePagination defaultActivePage={1} totalPages={totalPages} handlePaginationChange={handlePaginationChange} />
+            <TablePagination defaultActivePage={1} totalPages={45} handlePaginationChange={handlePaginationChange} />
 
         </>
     )
+
 }
+
+export default MovieTable;

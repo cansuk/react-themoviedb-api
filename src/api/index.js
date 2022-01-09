@@ -11,11 +11,12 @@ const { apiUrl, apiKey } = constants;
  * @return promise
  */
 const getMoviesByCriteria = async (params) => new Promise(async (resolve, reject) => {
-    const { query } = params;
+    const { query, page } = params;
+
     try {
-        const response = await axios.get(`${apiUrl}/search/movie?api_key=${apiKey}&query=${query}`);
+        const response = await axios.get(`${apiUrl}/search/movie?api_key=${apiKey}&query=${query}&page=${page}`);
         if (response.status === 200) {
-            resolve(response.data.results);
+            resolve({ movies: response.data.results, totalPages: response.data.total_pages });
         } else {
             reject(response.statusText);
         }

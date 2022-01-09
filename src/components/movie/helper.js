@@ -26,8 +26,11 @@ export const getTableData = (movies, genres) => {
 
 
     var result = movies.map(data => {
-        data["poster_path"] = constants.imgRoot.concat(data["poster_path"]);
-        let genreList = data["genre_ids"].map(id => genres.filter(genre => genre["id"] === id)[0]["name"])
+        if (data["poster_path"]) {
+            data["poster_path"] = constants.imgRoot.concat(data["poster_path"]);
+        }
+
+        let genreList = data["genre_ids"].map(id => genres.filter(genre => genre["id"] === id)?.[0]["name"])
         return { ...data, ...{ genres: genreList } };
     });
 
