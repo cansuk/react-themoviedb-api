@@ -20,7 +20,7 @@ const CardView = (props) => {
                     <span className='date'>Released : {data["release_date"]}</span>
                 </Card.Meta>
                 <Card.Description>
-                    <TagView dataList={data["genres"].map(genre => genre.name)} />
+                    <TagView dataList={data["genres"]?.map(genre => genre.name)} />
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
