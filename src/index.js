@@ -5,12 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { FaTrash } from 'react-icons/fa';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
+      {/* <h1> Cansu KALUÇ </h1> */}
+
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

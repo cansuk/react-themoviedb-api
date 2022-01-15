@@ -9,8 +9,9 @@ import TablePagination from './pagination';
 import { ListTypes } from './synthetic-enums';
 import { getManagedArr, updateLocalStorage } from './utils';
 // import MultiLineTextEllipsis from "./styled-components/text-ellipsis";
-import DarkImgFilter from './styled-components/dark-img-filter';
+
 import styled from 'styled-components';
+import DarkImgFilter from '../../styled-components/DarkImgFilter';
 
 
 

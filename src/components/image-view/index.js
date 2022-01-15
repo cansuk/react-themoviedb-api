@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Label, Segment } from 'semantic-ui-react'
-import DarkImgFilter from '../shared/styled-components/dark-img-filter'
+import DarkImgFilter from '../../styled-components/DarkImgFilter'
+
 
 const ImageView = ({ src }) => {
     return (
