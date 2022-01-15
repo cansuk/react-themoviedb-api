@@ -4,7 +4,6 @@ import shortid from 'shortid';
 import { constants } from '../../constants';
 import RatingView from '../shared/RatingView';
 import TagView from '../tag-view';
-import '../../styles/index.css';
 
 const CardView = (props) => {
     const { movies, handleRemoveFromList } = props;
