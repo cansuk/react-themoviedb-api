@@ -3,7 +3,7 @@ export const colors = {
     disabledColor: "gray",
     fontColorLight: "white",
     fontColorDark: "black",
-
+    activeColor: "yellowgreen"
 
 }
 

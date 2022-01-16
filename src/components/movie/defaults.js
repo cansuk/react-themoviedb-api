@@ -37,13 +37,13 @@ export const MovieTableHeaderNames = {
 
 export const MovieTableHeaderVisibles = {
     poster_path: true,
-    title: true,
-    original_language: true,
     release_date: true,
     vote_count: true,
-    vote_average: true,
-    genres: true,
+    vote_average: false,
+    genres: false,
 
+    original_language: false,
+    title: false,
     popularity: false,
     adult: false,
     backdrop_path: false,

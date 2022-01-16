@@ -1,4 +1,8 @@
-import { useReducer, useState } from "react"
+import { useReducer } from "react";
+import { MdFirstPage, MdLastPage, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { Button, RippledButton, SlippingIconButton, Span } from "../../styled-components/Button";
+import { colors } from "../../styled-components/Variables";
+
 
 export const Paginator = ({ defaultActivePage, totalPages, handlePaginationChange }) => {
 
@@ -37,16 +41,16 @@ export const Paginator = ({ defaultActivePage, totalPages, handlePaginationChang
 
     return <div className="pagination">
         <button onClick={() => dispatch({ type: 'GO_TO_PAGE', pageIndex: 1 })} disabled={disabled.firstPage}>
-            {'<<'}
+            <MdFirstPage />
         </button>{' '}
         <button onClick={() => dispatch({ type: 'GO_TO_PAGE', pageIndex: pageIndex - 1 })} disabled={disabled.prevPage}>
-            {'<'}
+            <MdNavigateBefore />
         </button>{' '}
         <button onClick={() => dispatch({ type: 'GO_TO_PAGE', pageIndex: pageIndex + 1 })} disabled={disabled.nextPage}>
-            {'>'}
+            <MdNavigateNext />
         </button>{' '}
         <button onClick={() => dispatch({ type: 'GO_TO_PAGE', pageIndex: totalPages })} disabled={disabled.lastPage}>
-            {'>>'}
+            <MdLastPage />
         </button>{' '}
         <span>
             Page{' '}
@@ -65,33 +69,13 @@ export const Paginator = ({ defaultActivePage, totalPages, handlePaginationChang
                 }}
                 style={{ width: '100px' }}
             />
-            <button onClick={() => {
+
+            <Button color={colors.primaryColor} onClick={() => {
                 dispatch({ type: 'GO_TO_PAGE', pageIndex: pageIndex });
-            }}> Go </button>
+            }}> GO  </Button>
+
+
         </span>
-        {/* <span>
-            | Go to page:{' '}
-            <input
-                type="number"
-                defaultValue={pageIndex + 1}
-                onChange={e => {
-                    const page = e.target.value ? Number(e.target.value) - 1 : 0
-                    gotoPage(page)
-                }}
-                style={{ width: '100px' }}
-            />
-        </span>{' '}
-        <select
-            value={pageSize}
-            onChange={e => {
-                setPageSize(Number(e.target.value))
-            }}
-        >
-            {[10, 20, 30, 40, 50].map(pageSize => (
-                <option key={pageSize} value={pageSize}>
-                    Show {pageSize}
-                </option>
-            ))}
-        </select> */}
+
     </div>
 }
