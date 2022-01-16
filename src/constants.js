@@ -3,5 +3,6 @@ export const constants = {
     apiKey: '09032c94c551d095d7178ff7f11b3c16', // TODO CANSU MOVE TO ENV FILE
     imgRoot: 'https://image.tmdb.org/t/p/w300',
     writeLogsToLocalStore: false,
-    starRateCount: 5
+    starRateCount: 5,
+    imagePreviewUrl: "https://react.semantic-ui.com/images/wireframe/image.png"
 }

@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 import { Card, Image } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { constants } from '../../constants';
-import { CardButton } from '../../styled-components/Button';
+import { Button } from '../../styled-components/Button';
 import { CardContent, CardFooter, CardFooterItem, CardHeader, CardMeta, CardWrapper } from '../../styled-components/Card';
 import DarkImgFilter from '../../styled-components/DarkImgFilter';
 import { Container } from '../../styled-components/FlexBox';
@@ -33,9 +33,9 @@ const CardView = (props) => {
                     </a>
                 </CardFooterItem>
                 <CardFooterItem>
-                    <CardButton onClick={() => handleRemoveFromList(data["id"])}>
-                        Remove<FaTrash />
-                    </CardButton>
+                    <Button onClick={() => handleRemoveFromList(data["id"])}>
+                        Remove <FaTrash />
+                    </Button>
                 </CardFooterItem>
             </CardFooter>
 

@@ -5,6 +5,7 @@ import { CustomTable } from '../shared/CustomTable';
 import { getTableData } from './helper';
 import { useParams } from 'react-router-dom';
 import MovieTable from './movie-table';
+import ResponsiveTable from '../shared/ResponsiveTable';
 
 const Movies = () => {
     const initialState = {
@@ -70,7 +71,7 @@ const Movies = () => {
     }, []);
 
 
-    const handlePaginationChange = (e, { activePage }) => {
+    const handlePaginationChange = ({ activePage }) => {
 
         const criteria = { query: state.value, page: activePage };
         searchServices.getMoviesByCriteria(criteria).then(({ movies, totalPages }) => {
@@ -95,10 +96,15 @@ const Movies = () => {
                     onChange={handleChange}
                 />
             </Grid.Column>
-            <CustomTable tableData={getTableData(state.results, state.genres)}
+            {/* <CustomTable tableData={getTableData(state.results, state.genres)}
                 handlePaginationChange={handlePaginationChange}
                 totalPages={state.totalPages}
-            />
+            /> */}
+
+            <ResponsiveTable tableData={getTableData(state.results, state.genres)}
+                handlePaginationChange={handlePaginationChange}
+                totalPages={state.totalPages} />
+
             {/* <MovieTable results={state.results} genres={state.genres} /> */}
         </Grid>
     )

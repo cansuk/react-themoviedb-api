@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "./Variables";
 
-export const CardButton = styled.button`
+export const Button = styled.button`
 display: block;
 width: 100%;
 padding: 12px 0;
