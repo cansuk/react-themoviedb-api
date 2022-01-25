@@ -20,7 +20,8 @@ export const Paginator = ({ defaultActivePage, totalPages, handlePaginationChang
     const pagingReducer = (state, action) => {
         switch (action.type) {
             case 'GO_TO_PAGE':
-                handlePaginationChange({ activePage: action.pageIndex })
+                handlePaginationChange({ activePage: action.pageIndex });
+                window.scrollTo(0, 0);
                 switch (action.pageIndex) {
                     case 1: // if first page
                         return { ...state, pageIndex: action.pageIndex, disabled: { ...{ prevPage: true, firstPage: true, nextPage: false, lastPage: false } } };

@@ -6,6 +6,13 @@ import { getTableData } from './helper';
 import { useParams } from 'react-router-dom';
 import MovieTable from './movie-table';
 import ResponsiveTable from '../shared/ResponsiveTable';
+import { SearchBox } from '../../styled-components/SearchBox';
+import { CardButton } from '../../styled-components/Button';
+import { Column, Container, Row } from '../../styled-components/FlexBox';
+;
+
+
+
 
 const Movies = () => {
     const initialState = {
@@ -66,8 +73,8 @@ const Movies = () => {
     };
 
     // event handler
-    const handleChange = React.useCallback((e, data) => {
-        dispatch({ type: 'START_SEARCH', query: data.value });
+    const handleChange = React.useCallback((e) => {
+        dispatch({ type: 'START_SEARCH', query: e.target.value });
     }, []);
 
 
@@ -88,25 +95,23 @@ const Movies = () => {
     }
 
     return (
-        <Grid columns={2} padded='vertically'>
-            <Grid.Column>
-                <Input
-                    icon={<Icon name='search' link onClick={handleSearch} />}
-                    placeholder='Search...'
-                    onChange={handleChange}
-                />
-            </Grid.Column>
-            {/* <CustomTable tableData={getTableData(state.results, state.genres)}
-                handlePaginationChange={handlePaginationChange}
-                totalPages={state.totalPages}
-            /> */}
-
-            <ResponsiveTable tableData={getTableData(state.results, state.genres)}
-                handlePaginationChange={handlePaginationChange}
-                totalPages={state.totalPages} />
-
-            {/* <MovieTable results={state.results} genres={state.genres} /> */}
-        </Grid>
+        <>
+            <Row justifyContent="space-evenly">
+                <Column>
+                    <SearchBox placeholder="Search..." onChange={handleChange} />
+                </Column>
+                <Column>
+                    <CardButton onClick={handleSearch}>
+                        Search
+                    </CardButton>
+                </Column>
+            </Row>
+            <Row>
+                <ResponsiveTable tableData={getTableData(state.results, state.genres)}
+                    handlePaginationChange={handlePaginationChange}
+                    totalPages={state.totalPages} />
+            </Row>
+        </>
     )
 }
 
