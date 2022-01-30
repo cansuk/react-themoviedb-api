@@ -1,49 +1,56 @@
 import React, { useState } from 'react'
-import { Menu, Grid, Segment } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import { Column, Container, Row } from '../../styled-components/FlexBox';
+import { MenuLink } from '../../styled-components/MenuLink';
 import { ListTypes, RouteKeys } from '../shared/synthetic-enums';
 
 const MoviesMenu = () => {
     const [activeItem, setActiveItem] = useState("searchForMovies");
     let navigate = useNavigate();
 
-    const handleItemClick = (e, { name, type }) => {
-        setActiveItem(name);
-        navigate(`/${name}`);
+    const handleItemClick = (e) => {
+        setActiveItem(e.target.name);
+        navigate(`/${e.target.name}`);
     };
 
     return (
-        <Menu vertical style={{ width: '100%' }}>
-            <Menu.Item>
-                <Menu.Header>Movies</Menu.Header>
-                <Menu.Menu>
-                    <Menu.Item
-                        name={RouteKeys.searchForMovies}
-                        active={activeItem === RouteKeys.searchForMovies}
-                        onClick={handleItemClick}
-                    >Search for movies
-                    </Menu.Item>
-                </Menu.Menu>
-            </Menu.Item>
-            <Menu.Item>
-                <Menu.Header>My lists</Menu.Header>
-                <Menu.Menu>
-                    <Menu.Item
-                        name={RouteKeys.favoriteMovies}
-                        active={activeItem === RouteKeys.favoriteMovies}
-                        onClick={handleItemClick}
-                    >Favorite
-                    </Menu.Item>
-                    <Menu.Item
-                        name={RouteKeys.watchLaterMovies}
-                        active={activeItem === RouteKeys.watchLaterMovies}
-                        onClick={handleItemClick}
-                    >Watch Later
-                    </Menu.Item>
-                </Menu.Menu>
-            </Menu.Item>
+        <Column vertical width={"100%"}>
+            <Row>
+                <h4>Movies</h4>
+            </Row>
+            <Row>
+                <MenuLink
+                    name={RouteKeys.searchForMovies}
+                    onClick={handleItemClick}
+                    active={activeItem === RouteKeys.searchForMovies}> Search for movies </MenuLink>
 
-        </Menu>
+            </Row>
+
+            <hr />
+
+            <Row>
+                <h4> My lists </h4>
+            </Row>
+
+            <Row>
+                <MenuLink
+                    name={RouteKeys.favoriteMovies}
+                    onClick={handleItemClick}
+                    active={activeItem === RouteKeys.favoriteMovies}> Favorite </MenuLink>
+            </Row>
+
+            <Row>
+                <MenuLink
+                    name={RouteKeys.watchLaterMovies}
+                    onClick={handleItemClick}
+                    active={activeItem === RouteKeys.watchLaterMovies}> Watch Later </MenuLink>
+            </Row>
+
+
+
+
+
+        </Column >
     )
 }
 

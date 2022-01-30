@@ -6,10 +6,10 @@ import {
   Route
 } from "react-router-dom";
 import MoviesMenu from './components/menu';
-import { Grid, Segment } from 'semantic-ui-react';
 import MoviesList from './components/list';
 import { ListTypes } from './components/shared/synthetic-enums';
 import ErrorBoundry from './components/shared/error-boundry';
+import { Column, Row } from './styled-components/FlexBox';
 
 
 function App() {
@@ -17,15 +17,15 @@ function App() {
     <>
       <Router>
         <ErrorBoundry>
-          <Grid columns={2}>
-            <Grid.Row stretched>
+          <>
+            <Row>
 
-              <Grid.Column width={4}>
+              <Column width={"25%"}>
                 <MoviesMenu />
-              </Grid.Column>
+              </Column>
 
-              <Grid.Column width={12}>
-                <Segment>
+              <Column width={"75%"}>
+                <div>
 
                   <Routes>
                     <Route exact path="/" element={<Movies />} />
@@ -45,11 +45,11 @@ function App() {
                     />
                   </Routes>
 
-                </Segment>
-              </Grid.Column>
+                </div>
+              </Column>
 
-            </Grid.Row>
-          </Grid>
+            </Row>
+          </>
         </ErrorBoundry>
       </Router>
     </>

@@ -4,6 +4,7 @@ import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Rating } from '../../styled-components/Rating';
 import { colors } from '../../styled-components/Variables';
 import { constants } from '../../constants';
+import shortid from 'shortid';
 
 const RatingView = ({ value, maxValue, voteCount }) => {
     const ratingVal = value * constants.starRateCount / maxValue;
@@ -15,14 +16,14 @@ const RatingView = ({ value, maxValue, voteCount }) => {
         const limit = Math.ceil(ratingVal);
         for (let i = 1; i <= limit; i++) {
             if (ratingVal >= i) {
-                stars.push(<BsStarFill color={colors.primaryColor} />);
+                stars.push(<BsStarFill key={shortid.generate()} color={colors.primaryColor} />);
             } else {
-                stars.push(<BsStarHalf color={colors.primaryColor} />);
+                stars.push(<BsStarHalf key={shortid.generate()} color={colors.primaryColor} />);
             }
             setStars([...stars]);
         }
         if (stars.length < constants.starRateCount) {
-            let grayStars = [...Array(constants.starRateCount - stars.length)].map((item) => { return <BsStar color={colors.primaryColor} /> });
+            let grayStars = [...Array(constants.starRateCount - stars.length)].map((item) => { return <BsStar key={shortid.generate()} color={colors.primaryColor} /> });
             stars.push(grayStars);
             setStars([...stars]);
         }

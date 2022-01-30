@@ -1,5 +1,4 @@
 import React from 'react'
-import { Image, Label, Segment } from 'semantic-ui-react'
 import DarkImgFilter from '../../styled-components/DarkImgFilter'
 
 

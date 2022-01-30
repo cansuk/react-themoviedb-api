@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon, Pagination } from 'semantic-ui-react';
 
 const TablePagination = ({ defaultActivePage, totalPages, handlePaginationChange }) => {
     return (

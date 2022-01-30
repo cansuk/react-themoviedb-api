@@ -1,5 +1,4 @@
 import React from 'react'
-import { Divider } from 'semantic-ui-react'
 
 export const Error = (msg) => {
     return (

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import log from 'loglevel';
 import { Link } from 'react-router-dom';
-import { Header, Icon, Segment } from 'semantic-ui-react';
 import { constants } from '../../../constants';
 
 log.enableAll();
@@ -49,15 +48,14 @@ class ErrorBoundary extends Component {
 
         if (this.state.hasError) {
             return (
-                <Segment placeholder>
-                    <Header icon>
-                        <Icon name='search' />
+                <div placeholder>
+                    <h1>
                         There are some problems with your operations.
-                    </Header>
-                    <Segment.Inline>
+                    </h1>
+                    <h3>
                         <Link to="/">{"BACK TO HOME"}</Link>
-                    </Segment.Inline>
-                </Segment>
+                    </h3>
+                </div>
 
             );
         } else {

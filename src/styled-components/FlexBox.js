@@ -12,7 +12,7 @@ align-items:center; */
 /* Create four equal columns that sits next to each other */
 export const Column = styled.div`
   flex: 25%;
-  max-width: 25%;
+  max-width: ${props => props.width || "100%"};
   padding: 4px 4px;
 `;
 

@@ -1,10 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
-import { Grid, Search, Segment, Label, Input, Button, Icon } from 'semantic-ui-react';
 import { searchServices, genreServices } from '../../api';
-import { CustomTable } from '../shared/CustomTable';
 import { getTableData } from './helper';
 import { useParams } from 'react-router-dom';
-import MovieTable from './movie-table';
 import ResponsiveTable from '../shared/ResponsiveTable';
 import { SearchBox } from '../../styled-components/SearchBox';
 import { CardButton } from '../../styled-components/Button';
@@ -97,10 +94,10 @@ const Movies = () => {
     return (
         <>
             <Row justifyContent="space-evenly">
-                <Column>
+                <Column width={"50%"}>
                     <SearchBox placeholder="Search..." onChange={handleChange} />
                 </Column>
-                <Column>
+                <Column width={"20%"}>
                     <CardButton onClick={handleSearch}>
                         Search
                     </CardButton>

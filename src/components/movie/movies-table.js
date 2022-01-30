@@ -1,25 +1,24 @@
 import React from 'react'
-import { Image, Table,Button } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { isArrNullOrEmpty } from '../../utils';
 import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../movie/defaults';
 
 
 const MoviesTable = () => {
-    return (
-  <Table celled padded>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell singleLine>Evidence Rating</Table.HeaderCell>
-        <Table.HeaderCell>Effect</Table.HeaderCell>
-        <Table.HeaderCell>Efficacy</Table.HeaderCell>
-        <Table.HeaderCell>Consensus</Table.HeaderCell>
-        <Table.HeaderCell>Add to favorites</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+  return (
+    <Table celled padded>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell singleLine>Evidence Rating</Table.HeaderCell>
+          <Table.HeaderCell>Effect</Table.HeaderCell>
+          <Table.HeaderCell>Efficacy</Table.HeaderCell>
+          <Table.HeaderCell>Consensus</Table.HeaderCell>
+          <Table.HeaderCell>Add to favorites</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
 
-    <Table.Body>
-      <Table.Row>
+      <Table.Body>
+        <Table.Row>
 
         </Table.Cell>
         <Table.Cell singleLine>Power Output</Table.Cell>
@@ -56,7 +55,7 @@ const MoviesTable = () => {
         </Table.Cell>
       </Table.Row>
     </Table.Body>
-  </Table>
+  </Table >
     )
 }
 

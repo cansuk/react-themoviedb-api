@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useMemo } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import { Card, Image } from 'semantic-ui-react';
 import shortid from 'shortid';
 import { constants } from '../../constants';
 import { Button, CardButton } from '../../styled-components/Button';
@@ -17,7 +16,7 @@ const CardView = (props) => {
         return <CardWrapper key={shortid.generate()}>
             <CardHeader>
                 <DarkImgFilter>
-                    <img border={true} src={constants.imgRoot.concat(data["poster_path"])} alt="img_poster" />
+                    <img src={constants.imgRoot.concat(data["poster_path"])} alt="img_poster" />
                 </DarkImgFilter>
             </CardHeader>
             <CardMeta>
