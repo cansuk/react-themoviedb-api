@@ -30,7 +30,6 @@ export const listReducer = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { addToList, removeFromList, setMoviesList } = listReducer.actions
 
-export default listReducer.reducer
+export default listReducer.reducer;

@@ -15,6 +15,7 @@ import { Paginator } from './Paginator';
 import { colors } from '../../styled-components/Variables';
 import { Container } from '../../styled-components/FlexBox';
 import { Badge } from '../../styled-components/Badge';
+import AddToList from '../add-to-list';
 
 const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
@@ -48,6 +49,12 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
 
     let tableRows = [];
 
+    const handleClick = (type, ids) => {
+        if (type === ListTypes.watchLater)
+            setState({ ...state, ...{ watchLaterIds: ids } });
+        else if (type === ListTypes.favorite)
+            setState({ ...state, ...{ favIds: ids } });
+    }
 
     dataList.forEach(data => {
 
@@ -74,22 +81,13 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
                                         {genresRef.current}
                                     </ImgTopLeftBar>
                                     <ImgBottomRightBar>
-                                        <CheckButton color={colors.primaryColor} active={state.favIds?.includes(data["id"])}
-                                            onClick={() => {
-                                                let managedArr = getManagedArr(state.favIds, data["id"]);
-                                                setState({ ...state, ...{ favIds: managedArr } });
-                                                updateLocalStorage(managedArr, ListTypes.favorite);
-                                            }}> <AiFillStar size={18} />
-                                            <br /> Favorite
-                                        </CheckButton>
-                                        <CheckButton color={colors.primaryColor} active={state.watchLaterIds?.includes(data["id"])}
-                                            onClick={() => {
-                                                let managedArr = getManagedArr(state.watchLaterIds, data["id"]);
-                                                setState({ ...state, ...{ watchLaterIds: managedArr } });
-                                                updateLocalStorage(managedArr, ListTypes.watchLater);
-                                            }}> <AiFillHeart size={18} /> <br />
-                                            Watch Later
-                                        </CheckButton>
+
+                                        <AddToList type={ListTypes.favorite} id={data["id"]} ids={state.favIds}
+                                            handleClick={(ids) => handleClick(ListTypes.favorite, ids)} />
+
+                                        <AddToList type={ListTypes.watchLater} id={data["id"]} ids={state.watchLaterIds}
+                                            handleClick={(ids) => handleClick(ListTypes.watchLater, ids)} />
+
                                     </ImgBottomRightBar>
                                     <ImgTopRightBar>
                                         {<Badge> {rateRef.current}</Badge>}
