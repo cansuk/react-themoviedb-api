@@ -40,13 +40,11 @@ const getGenres = async () => new Promise(async (resolve, reject) => {
     try {
         const response = await axios.get(`${apiUrl}/genre/movie/list?api_key=${apiKey}`);
         if (response.status === 200) {
-            window.genres = response.data.genres;
             resolve(response.data.genres);
         } else {
             reject(response.statusText);
         }
     } catch (error) {
-        debugger;
         console.error(error);
         reject(error);
     }
