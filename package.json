@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "cypress": "^9.2.0",
+    "enzyme": "^3.11.0",
     "loglevel": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "sass": "^1.48.0"
   }
 }

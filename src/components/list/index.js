@@ -27,12 +27,12 @@ const MoviesList = ({ type }) => {
             dispatch(setMoviesList({ type, movies }));
         }).catch(error => {
             debugger;
-            console.log(error);
+            console.error(error);
         });
 
     }, [type]);
 
-    return <CardView movies={listMovies[type]} handleRemoveFromList={handleRemoveFromList} />;
+    return listMovies[type].length === 0 ? "Nothing in that list" : <CardView movies={listMovies[type]} handleRemoveFromList={handleRemoveFromList} />
 }
 
 export default MoviesList;

@@ -48,6 +48,7 @@ const Movies = () => {
             return;
         }
         genreServices.getGenres().then(genres => {
+            debugger;
             dispatch({
                 type: 'SET_GENRES',
                 genres: genres
@@ -79,7 +80,7 @@ const Movies = () => {
 
         const criteria = { query: state.value, page: activePage };
         searchServices.getMoviesByCriteria(criteria).then(({ movies, totalPages }) => {
-
+            debugger;
             dispatch({
                 type: 'FINISH_SEARCH',
                 results: movies,
