@@ -1,6 +1,6 @@
 {
   "name": "react-themoviedb-api",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "homepage": "https://cansuk.github.io/react-themoviedb-api/",
   "dependencies": {
