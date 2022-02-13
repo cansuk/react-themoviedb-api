@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-themoviedb-api/static/css/main.e1ce61ea.chunk.css",
-    "main.js": "/react-themoviedb-api/static/js/main.4e0bda8d.chunk.js",
-    "main.js.map": "/react-themoviedb-api/static/js/main.4e0bda8d.chunk.js.map",
+    "main.js": "/react-themoviedb-api/static/js/main.af48e604.chunk.js",
+    "main.js.map": "/react-themoviedb-api/static/js/main.af48e604.chunk.js.map",
     "runtime-main.js": "/react-themoviedb-api/static/js/runtime-main.637f40f5.js",
     "runtime-main.js.map": "/react-themoviedb-api/static/js/runtime-main.637f40f5.js.map",
-    "static/js/2.e7ca127b.chunk.js": "/react-themoviedb-api/static/js/2.e7ca127b.chunk.js",
-    "static/js/2.e7ca127b.chunk.js.map": "/react-themoviedb-api/static/js/2.e7ca127b.chunk.js.map",
+    "static/js/2.8bdac23e.chunk.js": "/react-themoviedb-api/static/js/2.8bdac23e.chunk.js",
+    "static/js/2.8bdac23e.chunk.js.map": "/react-themoviedb-api/static/js/2.8bdac23e.chunk.js.map",
     "static/js/3.776491b8.chunk.js": "/react-themoviedb-api/static/js/3.776491b8.chunk.js",
     "static/js/3.776491b8.chunk.js.map": "/react-themoviedb-api/static/js/3.776491b8.chunk.js.map",
     "index.html": "/react-themoviedb-api/index.html",
     "static/css/main.e1ce61ea.chunk.css.map": "/react-themoviedb-api/static/css/main.e1ce61ea.chunk.css.map",
-    "static/js/2.e7ca127b.chunk.js.LICENSE.txt": "/react-themoviedb-api/static/js/2.e7ca127b.chunk.js.LICENSE.txt"
+    "static/js/2.8bdac23e.chunk.js.LICENSE.txt": "/react-themoviedb-api/static/js/2.8bdac23e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.637f40f5.js",
-    "static/js/2.e7ca127b.chunk.js",
+    "static/js/2.8bdac23e.chunk.js",
     "static/css/main.e1ce61ea.chunk.css",
-    "static/js/main.4e0bda8d.chunk.js"
+    "static/js/main.af48e604.chunk.js"
   ]
 }
