@@ -10,6 +10,7 @@ import MoviesList from './components/list';
 import { ListTypes } from './components/shared/synthetic-enums';
 import ErrorBoundry from './components/shared/error-boundry';
 import { Column, Row } from './styled-components/FlexBox';
+import { AppContainer } from './styled-components/AppContainer';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <>
       <Router>
         <ErrorBoundry>
-          <>
+          <AppContainer>
             <Row>
 
               <Column width={"25%"}>
@@ -49,7 +50,7 @@ function App() {
               </Column>
 
             </Row>
-          </>
+          </AppContainer>
         </ErrorBoundry>
       </Router>
     </>

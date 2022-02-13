@@ -16,31 +16,31 @@
 //     { name: "genres", displayAs: "Genres", visible: true }
 // ];
 
-export const MovieTableHeaderNames = {
-    poster_path: "",
-    title: "Title",
-    original_language: "Original Language",
-    release_date: "Release Date",
-    vote_count: "Vote Count",
-    vote_average: "Vote Average",
-    genres: "Genres",
+// export const MovieTableHeaderNames = {
+//     poster_path: "",
+//     title: "Title",
+//     original_language: "Original Language",
+//     release_date: "Release Date",
+//     vote_count: "Vote Count",
+//     vote_average: "Vote Average",
+//     genres: "Genres",
 
-    adult: "Adult",
-    backdrop_path: "Backdrop Path",
-    genre_ids: "Genre Ids",
-    id: "Id",
-    original_title: "Original Title",
-    overview: "Overview",
-    popularity: "Popularity",
-    video: "Video"
-}
+//     adult: "Adult",
+//     backdrop_path: "Backdrop Path",
+//     genre_ids: "Genre Ids",
+//     id: "Id",
+//     original_title: "Original Title",
+//     overview: "Overview",
+//     popularity: "Popularity",
+//     video: "Video"
+// }
 
 export const MovieTableHeaders = {
     poster_path: { displayName: "", visible: true },
     title: { displayName: "Title", visible: true },
     original_language: { displayName: "Language", visible: true },
-    release_date: { displayName: "Release Date", visible: true },
-    vote_count: { displayName: "Vote Count", visible: true },
+    release_date: { displayName: "Release Date", visible: false },
+    vote_count: { displayName: "Vote Count", visible: false },
     vote_average: { displayName: "Vote Average", visible: true },
     genres: { displayName: "Genres", visible: true },
     adult: { displayName: "Adult", visible: true },
@@ -53,21 +53,21 @@ export const MovieTableHeaders = {
     video: { displayName: "Video", visible: true }
 }
 
-export const MovieTableHeaderVisibles = {
-    poster_path: true,
-    release_date: true,
-    vote_count: true,
-    vote_average: false,
-    genres: false,
+// export const MovieTableHeaderVisibles = {
+//     poster_path: true,
+//     release_date: true,
+//     vote_count: true,
+//     vote_average: false,
+//     genres: false,
 
-    original_language: false,
-    title: false,
-    popularity: false,
-    adult: false,
-    backdrop_path: false,
-    genre_ids: false,
-    id: false,
-    original_title: false,
-    overview: true,
-    video: false,
-}
+//     original_language: false,
+//     title: false,
+//     popularity: false,
+//     adult: false,
+//     backdrop_path: false,
+//     genre_ids: false,
+//     id: false,
+//     original_title: false,
+//     overview: true,
+//     video: false,
+// }

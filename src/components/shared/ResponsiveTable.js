@@ -1,21 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import shortid from 'shortid';
-import { Button, CardButton, RippledButton, CheckButton } from '../../styled-components/Button';
 import { isArrNullOrEmpty } from '../../utils';
-import { MovieTableHeaderNames, MovieTableHeaderVisibles } from '../movie/defaults';
+import { MovieTableHeaders } from '../movie/defaults';
 import { ListTypes } from './synthetic-enums';
-import { getManagedArr, updateLocalStorage } from './utils';
-import { BsBookmarkStar, BsBookmarkPlus } from 'react-icons/bs';
-import { AiFillHeart, AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import DarkImgFilter from '../../styled-components/DarkImgFilter';
-import { ImgContainer, ImgLabels, ImgBottomLeftBar, ResponsiveImage, ImgTopLeftBar, ImgBottomRightBar, ImgTopRightBar } from '../../styled-components/ResponsiveImage';
 import { constants } from '../../constants';
 import { Table } from '../../styled-components/Table';
 import { Paginator } from './Paginator';
-import { colors } from '../../styled-components/Variables';
-import { Container } from '../../styled-components/FlexBox';
 import { Badge } from '../../styled-components/Badge';
 import AddToList from '../add-to-list';
+import { ImgContainer, ResponsiveImage, ImgTopLeftBar, ImgBottomRightBar, ImgTopRightBar } from '../../styled-components/ResponsiveImage';
 
 const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
@@ -42,10 +36,10 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     if (isArrNullOrEmpty(dataList) || isArrNullOrEmpty(headers)) {
         return <>  </> // <Error msg="Data empty!" />
     }
-    const keys = Object.keys(MovieTableHeaderVisibles);
-    const visibleKeys = keys.filter(key => MovieTableHeaderVisibles[key]);
+    const keys = Object.keys(MovieTableHeaders);
+    const visibleKeys = keys.filter(key => key["visible"]);
 
-    const tableHeaders = visibleKeys.map(key => MovieTableHeaderVisibles[key] && <th key={shortid.generate()}> {MovieTableHeaderNames[key]} </th>);
+    const tableHeaders = visibleKeys.map(key => MovieTableHeaders[key] && <th key={shortid.generate()}> {MovieTableHeaders[key]} </th>);
 
     let tableRows = [];
 
@@ -57,7 +51,6 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     }
 
     dataList.forEach(data => {
-
 
         tableRows.push(<tr key={shortid.generate()}>
             {keys.map(key => {
@@ -139,4 +132,4 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     )
 }
 
-export default ResponsiveTable
+export default ResponsiveTable;

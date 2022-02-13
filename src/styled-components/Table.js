@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
 width: 100%;
-background: -webkit-linear-gradient(to right, #38ef7d, #11998e); background: #00F260; 
-background: -webkit-linear-gradient(to right, #0575E6, #00F260);  
-background: linear-gradient(to right, #0575E6, #00F260); 
+
 
 /** striped styles : */
 
