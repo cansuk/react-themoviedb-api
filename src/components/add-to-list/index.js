@@ -12,7 +12,6 @@ const AddToList = (props) => {
 
     return <CheckButton color={colors.primaryColor} active={ids?.includes(id)}
         onClick={() => {
-            onClick();
             let managedArr = getManagedArr(ids, id);
             handleClick(managedArr);
             updateLocalStorage(managedArr, type);

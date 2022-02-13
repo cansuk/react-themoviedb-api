@@ -67,10 +67,12 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
                 switch (key) {
                     case "genres":
                         //cellVal = data[key].join();
-                        genresRef.current = data[key]?.map(genre => <Badge>{genre}</Badge>);
+                        genresRef.current = data[key]?.map(genre => <Badge key={shortid.generate()}>{genre}</Badge>);
                         break;
                     case "vote_average":
-                        rateRef.current = <> {`${data[key]}/10`} </>
+                        if (data[key] !== 0 && data[key] !== "") {
+                            rateRef.current = <> {`${data[key]}/10`} </>
+                        }
                         break;
                     case "poster_path":
                         if (data[key]) {

@@ -21,7 +21,6 @@ const getMoviesByCriteria = async (params) => new Promise(async (resolve, reject
             reject(response.statusText);
         }
     } catch (error) {
-        debugger;
         console.error(error);
         reject(error);
     }
@@ -70,7 +69,6 @@ const getMovieById = async (params) => new Promise(async (resolve, reject) => {
             reject(response.statusText);
         }
     } catch (error) {
-        debugger;
         console.error(error);
         reject(error);
     }

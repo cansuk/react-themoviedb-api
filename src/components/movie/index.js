@@ -6,10 +6,6 @@ import ResponsiveTable from '../shared/ResponsiveTable';
 import { SearchBox } from '../../styled-components/SearchBox';
 import { CardButton } from '../../styled-components/Button';
 import { Column, Container, Row } from '../../styled-components/FlexBox';
-;
-
-
-
 
 const Movies = () => {
     const initialState = {
@@ -48,7 +44,6 @@ const Movies = () => {
             return;
         }
         genreServices.getGenres().then(genres => {
-            debugger;
             dispatch({
                 type: 'SET_GENRES',
                 genres: genres
@@ -65,7 +60,7 @@ const Movies = () => {
             });
         }).catch(err => {
             // TODO handle error
-            debugger;
+            console.error(err);
         });
 
     };
@@ -80,7 +75,6 @@ const Movies = () => {
 
         const criteria = { query: state.value, page: activePage };
         searchServices.getMoviesByCriteria(criteria).then(({ movies, totalPages }) => {
-            debugger;
             dispatch({
                 type: 'FINISH_SEARCH',
                 results: movies,
@@ -88,7 +82,7 @@ const Movies = () => {
             });
         }).catch(err => {
             // TODO handle error
-            debugger;
+            console.error(err);
         });
     }
 

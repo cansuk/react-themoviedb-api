@@ -35,6 +35,24 @@ export const MovieTableHeaderNames = {
     video: "Video"
 }
 
+export const MovieTableHeaders = {
+    poster_path: { displayName: "", visible: true },
+    title: { displayName: "Title", visible: true },
+    original_language: { displayName: "Language", visible: true },
+    release_date: { displayName: "Release Date", visible: true },
+    vote_count: { displayName: "Vote Count", visible: true },
+    vote_average: { displayName: "Vote Average", visible: true },
+    genres: { displayName: "Genres", visible: true },
+    adult: { displayName: "Adult", visible: true },
+    backdrop_path: { displayName: "Backdrop Path", visible: true },
+    genre_ids: { displayName: "Genre Ids", visible: true },
+    id: { displayName: "Id", visible: true },
+    original_title: { displayName: "Original Title", visible: true },
+    overview: { displayName: "Overview", visible: true },
+    popularity: { displayName: "Popularity", visible: true },
+    video: { displayName: "Video", visible: true }
+}
+
 export const MovieTableHeaderVisibles = {
     poster_path: true,
     release_date: true,

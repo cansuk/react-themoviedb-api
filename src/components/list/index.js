@@ -26,7 +26,6 @@ const MoviesList = ({ type }) => {
         Promise.all(promises).then((movies) => {
             dispatch(setMoviesList({ type, movies }));
         }).catch(error => {
-            debugger;
             console.error(error);
         });
 
