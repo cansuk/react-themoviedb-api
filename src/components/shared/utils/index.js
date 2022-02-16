@@ -24,8 +24,8 @@ export const getRandomColor = () => {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-export const getRandomSemanticColor = () => {
-    const semanticColors = ['red',
+export const getRandomPrimaryColor = () => {
+    const colors = ['red',
         'orange',
         'yellow',
         'olive',
@@ -38,5 +38,5 @@ export const getRandomSemanticColor = () => {
         'brown',
         'grey',
         'black']
-    return semanticColors[Math.floor(Math.random() * semanticColors.length)];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
