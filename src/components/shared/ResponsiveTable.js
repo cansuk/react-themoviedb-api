@@ -10,6 +10,8 @@ import { Paginator } from './Paginator';
 import { Badge } from '../../styled-components/Badge';
 import AddToList from '../add-to-list';
 import { ImgContainer, ResponsiveImage, ImgTopLeftBar, ImgBottomRightBar, ImgTopRightBar } from '../../styled-components/ResponsiveImage';
+import { BsCardImage } from 'react-icons/bs';
+import ImgPreview from './img-review';
 
 const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
     const [state, setState] = useState({ favIds: [], watchLaterIds: [] });
@@ -91,8 +93,7 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
 
                             </DarkImgFilter>
                         } else {
-                            cellVal =
-                                <ResponsiveImage src={constants.imagePreviewUrl} size="small" rounded alt="movie_poster" />
+                            cellVal = <ImgPreview />
                         }
                         break;
 

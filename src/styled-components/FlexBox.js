@@ -4,9 +4,10 @@ export const Container = styled.div`
 display: flex;
 flex-direction: row;
 flex-wrap:wrap;
-justify-content:  ${props => props.justifyContent}
-/* justify-content: center;
-align-items:center; */
+justify-content:  ${props => props.justifyContent};
+align-items:  ${props => props.alignItems};
+gap:15px;
+background-color: ${props => props.color} || rgba(0,0,0,0);
 `;
 
 /* Create four equal columns that sits next to each other */

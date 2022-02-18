@@ -93,7 +93,7 @@ const Movies = () => {
                     <SearchBox placeholder="Search..." onChange={handleChange} />
                 </Column>
                 <Column width={"20%"}>
-                    <CardButton onClick={handleSearch}>
+                    <CardButton onClick={handleSearch} rounded>
                         Search
                     </CardButton>
                 </Column>

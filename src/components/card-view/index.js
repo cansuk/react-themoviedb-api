@@ -2,11 +2,9 @@ import React, { lazy, Suspense, useMemo } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import shortid from 'shortid';
 import { constants } from '../../constants';
-import { Button, CardButton } from '../../styled-components/Button';
-import { CardContent, CardFooter, CardFooterItem, CardHeader, CardMeta, CardWrapper } from '../../styled-components/Card';
-import DarkImgFilter from '../../styled-components/DarkImgFilter';
+import { CardButton } from '../../styled-components/Button';
+import { CardContent, CardFooter, CardFooterItem, CardMeta, CardWrapper } from '../../styled-components/Card'
 import { Container } from '../../styled-components/FlexBox';
-import { Icon } from '../../styled-components/Icon';
 import FlipCard from '../shared/card';
 import RatingView from '../shared/RatingView';
 import TagView from '../tag-view';
@@ -17,38 +15,7 @@ const CardView = (props) => {
     const predicate = (data) => {
         const front = <img src={constants.imgRoot.concat(data["poster_path"])} alt="img_poster" />;
 
-        const back = <>
-            <CardMeta>
-                <span className='date'>Released : {data["release_date"]}</span>
-            </CardMeta>
-            <CardContent>
-                <TagView dataList={data["genres"]?.map(genre => genre.name)} />
-            </CardContent>
-            <CardFooter>
-                <CardFooterItem>
-                    <a>
-                        <RatingView value={data["vote_average"]} voteCount={data["vote_count"]} maxValue={10} />
-                    </a>
-                </CardFooterItem>
-                <CardFooterItem>
-                    {/* <CardButton onClick={() => handleRemoveFromList(data["id"])}>
-                        Remove <FaTrash />
-                    </CardButton> */}
-                </CardFooterItem>
-            </CardFooter>
-        </>;
-        return <CardWrapper key={shortid.generate()}>
-            <FlipCard front={front} back={back} />
-            <CardButton onClick={() => handleRemoveFromList(data["id"])}>
-                Remove <FaTrash />
-            </CardButton>
-        </CardWrapper>
-        // return <CardWrapper key={shortid.generate()}>
-        //     <CardHeader>
-        //         <DarkImgFilter>
-        //             <img src={constants.imgRoot.concat(data["poster_path"])} alt="img_poster" />
-        //         </DarkImgFilter>
-        //     </CardHeader>
+        // const back = <>
         //     <CardMeta>
         //         <span className='date'>Released : {data["release_date"]}</span>
         //     </CardMeta>
@@ -57,23 +24,35 @@ const CardView = (props) => {
         //     </CardContent>
         //     <CardFooter>
         //         <CardFooterItem>
-        //             <a>
+        //             <a href={() => void (0)}>
         //                 <RatingView value={data["vote_average"]} voteCount={data["vote_count"]} maxValue={10} />
         //             </a>
         //         </CardFooterItem>
-        //         <CardFooterItem>
-        //             <CardButton onClick={() => handleRemoveFromList(data["id"])}>
-        //                 Remove <FaTrash />
-        //             </CardButton>
-        //         </CardFooterItem>
         //     </CardFooter>
+        // </>;
 
-        // </CardWrapper>
+        const back = <Container justifyContent="center" alignItems="center">
+            <span className='date'>Released : {data["release_date"]}</span>
+            <TagView dataList={data["genres"]?.map(genre => genre.name)} />
+            <a href={() => void (0)}>
+                <RatingView value={data["vote_average"]} voteCount={data["vote_count"]} maxValue={10} />
+            </a>
+        </Container>
+
+        return <CardWrapper key={shortid.generate()}>
+            <FlipCard front={back} back={front} />
+            <CardButton onClick={() => handleRemoveFromList(data["id"])}>
+                Remove <FaTrash />
+            </CardButton>
+        </CardWrapper>
     }
 
-    return <Container>
-        {movies?.map(predicate)}
-    </Container>
+    return <React.Suspense fallback={<div className="data-grid-spin"> <p style={{ color: "white" }}> !!!!!!!!!!!!!!!!!!!!!!!! LOADING</p></div>}>
+        <Container>
+            {movies?.map(predicate)}
+        </Container>
+    </React.Suspense>
+
 }
 
 export default CardView;

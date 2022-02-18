@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { movieServices } from '../../api';
 import { addToList, removeFromList, setMoviesList } from '../../redux/reducers/listReducer';
 import CardView from '../card-view';
+import Loading from '../shared/loading';
 
 
 const MoviesList = ({ type }) => {
@@ -31,7 +32,8 @@ const MoviesList = ({ type }) => {
 
     }, [type]);
 
-    return listMovies[type].length === 0 ? "Nothing in that list" : <CardView movies={listMovies[type]} handleRemoveFromList={handleRemoveFromList} />
+    // return listMovies[type].length === 0 ? "Nothing in that list" : <CardView movies={listMovies[type]} handleRemoveFromList={handleRemoveFromList} />
+    return listMovies[type].length === 0 ? <Loading text="Please wait..." /> : <CardView movies={listMovies[type]} handleRemoveFromList={handleRemoveFromList} />
 }
 
 export default MoviesList;
