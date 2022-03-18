@@ -1,8 +1,8 @@
 {
   "name": "react-themoviedb-api",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": false,
-  "homepage": "https://cansuk.github.io/react-themoviedb-api/",
+  "homepage": "https://cansuk.github.io/",
   "dependencies": {
     "@cypress/react": "^5.12.0",
     "@cypress/webpack-dev-server": "^1.8.0",

@@ -12,8 +12,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
-      {/* <h1> Cansu KALUÇ </h1> */}
-
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

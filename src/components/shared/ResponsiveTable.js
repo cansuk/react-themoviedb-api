@@ -62,7 +62,7 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
                 switch (key) {
                     case "genres":
                         //cellVal = data[key].join();
-                        genresRef.current = data[key]?.map(genre => <Badge key={shortid.generate()}>{genre}</Badge>);
+                        genresRef.current = data[key]?.map(genre => <Badge color={"black"} key={shortid.generate()}>{genre}</Badge>);
                         break;
                     case "vote_average":
                         if (data[key] !== 0 && data[key] !== "") {
@@ -87,7 +87,7 @@ const ResponsiveTable = ({ tableData, handlePaginationChange, totalPages }) => {
 
                                     </ImgBottomRightBar>
                                     <ImgTopRightBar>
-                                        {<Badge> {rateRef.current}</Badge>}
+                                        {<Badge color={"black"} > {rateRef.current}</Badge>}
                                     </ImgTopRightBar>
                                 </ImgContainer>
 
