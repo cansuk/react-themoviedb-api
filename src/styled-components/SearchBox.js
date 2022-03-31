@@ -3,8 +3,7 @@ import searchIcon from '../assets/searchicon.png';
 import { colors } from "./Variables";
 
 export const SearchBox = styled.input`
-  background-image: url(${searchIcon});
-  width: 100%;
+  background-image: url(${searchIcon});  
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 500px;
@@ -18,5 +17,5 @@ export const SearchBox = styled.input`
   &:focus{
     color:${colors.pink};
     border:0px;
-  }
+  };
 `;

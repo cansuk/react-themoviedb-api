@@ -33,8 +33,8 @@ export const ImgTopRightBar = styled(ImgBar)`
 
 
 export const ResponsiveImage = styled.img`
-    src: ${props => props.src};
-    width: 100%;
-    max-width: 300px;
+    max-width: 100%;
+    width:300px;
     height: auto;
+    src: ${props => props.src};
 `;

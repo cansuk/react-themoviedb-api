@@ -42,7 +42,6 @@ opacity: 0.7;
 
 export const CardButton = styled.button`
 display: block;
-width: 100%;
 min-width:100px;
 padding: 12px 20px;
 font-family: inherit;

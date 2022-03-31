@@ -88,16 +88,12 @@ const Movies = () => {
 
     return (
         <>
-            <Row justifyContent="space-evenly">
-                <Column width={"50%"}>
-                    <SearchBox placeholder="Search..." onChange={handleChange} />
-                </Column>
-                <Column width={"20%"}>
-                    <CardButton onClick={handleSearch} rounded>
-                        Search
-                    </CardButton>
-                </Column>
-            </Row>
+            <Container>
+                <SearchBox placeholder="Search..." onChange={handleChange} value="cansu" />
+                <CardButton onClick={handleSearch} rounded data-testid="btnSearch">
+                    Search
+                </CardButton>
+            </Container>
             <Row>
                 <ResponsiveTable tableData={getTableData(state.results, state.genres)}
                     handlePaginationChange={handlePaginationChange}

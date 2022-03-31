@@ -26,16 +26,16 @@ export const FlipCardFace = styled.div`
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    display:flex;
+    alignItems:stretch;
 `;
 
 export const FlipCardFront = styled(FlipCardFace)`
-    background-color: #bbb;
-    color: black;
+    background-color: black;
+    color: white;
 `;
 
 export const FlipCardBack = styled(FlipCardFace)`
-    /* background-color: #2980b9;
-    color: white; */
     transform: rotateY(180deg);
 `;
 

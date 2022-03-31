@@ -28,10 +28,6 @@ const RatingView = ({ value, maxValue, voteCount }) => {
             setStars([...stars]);
         }
 
-        return () => {
-            console.log("cleanup1")
-            console.log("cleanup2")
-        }
     }, [value])
 
     return (
